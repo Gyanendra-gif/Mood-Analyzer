@@ -26,5 +26,12 @@ namespace MoodAnalyzerTesting
             string actual = moodAnalyser.AnalyzeMood("I am in Any mood");
             Assert.AreEqual(expected, actual);
         }
+        public void Test3()
+        {
+            MoodAnalyser moodAnalyser = new MoodAnalyser();
+            string expected = "Happy";
+            string actual = moodAnalyser.AnalyzeMood(null);
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
