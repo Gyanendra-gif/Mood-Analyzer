@@ -7,28 +7,30 @@ namespace MoodAnalyzerTesting
     public class Tests
     {
         MoodAnalyser moodAnalyser;
+        private readonly object MoodAnalyseFactory;
+
         [SetUp]
         public void Setup()
         {
             this.moodAnalyser = new MoodAnalyser("Empty Mood");
         }
 
-        [Test]
+        [Test] // Given "I am in Sad Mood"  Message Should Return Sad
         public void GivenSadMessage_WhenAnalyze_ShouldReturnSad()
-        {            
+        {
             string expected = "Sad";
             string actual = moodAnalyser.AnalyzeMood("I am in Sad mood");
             Assert.AreEqual(expected, actual);
         }
 
-        [Test]
+        [Test] // Given Empty Mood should throw MoodAnalysisException.
         public void GivenInvalidMood_WhenAnalyze_ShouldReturnMoodAnalyzeException()
         {
             string expected = "Happy";
             string actual = moodAnalyser.AnalyzeMood("Empty Mood");
             Assert.AreEqual(expected, actual);
         }
-        [Test]
+        [Test] // Given Null Mood should throw MoodAnalysisException.
         public void GivenNullMessage_WhenAnalyze_ShouldReturnExceptionMessage()
         {
             try
@@ -41,6 +43,14 @@ namespace MoodAnalyzerTesting
             {
                 Assert.AreEqual("Mood Should Not be Null", e.Message);
             }
+        }
+        [Test] // Given Mood Analyse Class Name Should throw MoodAnalysisException.
+        public void GivenMoodAnalyseClassName_WhenAnalyze_ShouldReturnMoodAnalyseObject()
+        {
+            object expected = new MoodAnalyser();
+            object obj = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyzerTesting.MoodAnalyser", "MoodAnalyser");
+            expected.Equals(obj);
+
         }
     }
 }
