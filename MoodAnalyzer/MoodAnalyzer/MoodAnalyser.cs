@@ -4,20 +4,43 @@ namespace MoodAnalyzer
 {
     public class MoodAnalyser
     {
-        public string AnalyzeMood(string Massage) 
+        private string message;
+        public MoodAnalyser(string Message) 
+        {
+            this.message = Message;
+        }
+        /*public string AnalyzeMood(string message) 
         {
             try
             {
-                if (Massage.Contains("Sad"))
+                if (this.message.Equals(string.Empty))
+                    throw new CustomException(CustomException.ExceptionType.EMPTY_MESSAGE, "Mood Should Not be Empty");
+                if (message.Contains("Sad"))
                     return "Sad";
                 else
                     return "Happy";
             }
-            catch 
+            catch(NullReferenceException)
             {
-                return "Happy";
+                throw new CustomException(CustomException.ExceptionType.NULL_MESSAGE, "Mood Should Not be Null");
             }
+        }*/
+        public string AnalyzeMood(string message)
+        {
+            try
+            {
+                if (this.message.Equals(string.Empty))
+                    throw new CustomException(CustomException.ExceptionType.NULL_MESSAGE, "Mood Should Not be Null");
+                if (message.Contains("Sad"))
+                    return "Sad";
+                else
+                    return "Happy";
+            }
+            catch (NullReferenceException)
+            {
+                throw new CustomException(CustomException.ExceptionType.NULL_MESSAGE, "Mood Should Not be Null");
+            }
+        }
 
-        } 
     }
 }
