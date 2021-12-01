@@ -50,7 +50,20 @@ namespace MoodAnalyzerTesting
             object expected = new MoodAnalyser();
             object obj = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyzerTesting.MoodAnalyser", "MoodAnalyser");
             expected.Equals(obj);
-
+        }
+        [Test] // Given ClassName Improper Should Return MoodAnalysis Exception
+        public void GivenClassNameImproper_WhenAnalyze_ShouldReturnMoodAnalysisException()
+        {
+            try
+            {
+                object expected = new MoodAnalyser();
+                object obj = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyzerProject.moodAnalysis", "MoodAnalyser");
+                expected.Equals(obj);
+            }
+            catch (CustomException e)
+            {
+                Assert.AreEqual("Construtor is not Found", e.Message);
+            }
         }
     }
 }
