@@ -87,5 +87,12 @@ namespace MoodAnalyzerTesting
                 Assert.AreEqual("Class not Found", e.Message);
             }
         }
+        [Test] // Given HappyMood Should Return Happy by Invoke Analyser Method
+        public void GivenHappyMood_WhenAnalyse_ShouldReturnHappy() 
+        {
+            string expected = "Happy";
+            string mood = MoodAnalyserFactory.InvokeAnalyserMethod("Happy", "Analyse Mood");
+            Assert.AreEqual(expected, mood);
+        }
     }
 }
