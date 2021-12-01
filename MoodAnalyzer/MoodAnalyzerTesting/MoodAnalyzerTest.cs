@@ -73,5 +73,19 @@ namespace MoodAnalyzerTesting
             expected.Equals(obj);
             Console.WriteLine(expected.Equals(obj));
         }
+        [Test] // Given ClassName Not Proper Should Return MoodAnalysis Exception
+        public void GiveClassNameNotProper_WhenAnalyze_ShouldReturnMoodAnalysisException()
+        {
+            try
+            {
+                object expected = new MoodAnalyser("Happy");
+                object obj = MoodAnalyserFactory.CreateMoodAnalyseUsingParameterizedConstructor("MoodAnalyzerProject.moodAnalyser", "MoodAnalyser", "HAPPY");
+                expected.Equals(obj);
+            }
+            catch (CustomException e)
+            {
+                Assert.AreEqual("Class not Found", e.Message);
+            }
+        }
     }
 }
