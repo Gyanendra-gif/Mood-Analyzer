@@ -57,13 +57,21 @@ namespace MoodAnalyzerTesting
             try
             {
                 object expected = new MoodAnalyser();
-                object obj = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyzerProject.moodAnalysis", "MoodAnalyser");
+                object obj = MoodAnalyserFactory.CreateMoodAnalyse("MoodAnalyzerTesting.MoodAnalyser", "MoodAnalyser");
                 expected.Equals(obj);
             }
             catch (CustomException e)
             {
                 Assert.AreEqual("Construtor is not Found", e.Message);
             }
+        }
+        [Test] // Given MoodAnalyse ClassName ShouldReturn MoodAnalyseObject Using Parameterize constructor
+        public void GiveMoodAnalyseClassName_WhenAnalyze_ShouldReturnMoodAnalyseObject_UsingParameterizeconstructor()
+        {
+            object expected = new MoodAnalyser("Happy");
+            object obj = MoodAnalyserFactory.CreateMoodAnalyseUsingParameterizedConstructor("MoodAnalyzerTesting.MoodAnalyser", "MoodAnalyser", "HAPPY");
+            expected.Equals(obj);
+            Console.WriteLine(expected.Equals(obj));
         }
     }
 }
