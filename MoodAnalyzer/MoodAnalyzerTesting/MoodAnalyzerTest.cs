@@ -28,5 +28,19 @@ namespace MoodAnalyzerTesting
             string actual = moodAnalyser.AnalyzeMood("Empty Mood");
             Assert.AreEqual(expected, actual);
         }
+        [Test]
+        public void GivenNullMessage_WhenAnalyze_ShouldReturnExceptionMessage()
+        {
+            try
+            {
+                string expected = "Mood Should Not be Null";
+                string actual = moodAnalyser.AnalyzeMood(null);
+                Assert.AreEqual(expected, actual);
+            }
+            catch (CustomException e)
+            {
+                Assert.AreEqual("Mood Should Not be Null", e.Message);
+            }
+        }
     }
 }
